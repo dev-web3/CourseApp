@@ -2,8 +2,10 @@
   <!-- Courses List Section -->
   <div class="row my-3">
     <div class="d-flex justify-content-between align-items-center">
-      <h2 class="mb-3">Courses</h2>
-      <button type="button" class="btn btn-secondary" (click)="(refreshCourses)">Refresh</button>
+      <h1 class="mb-3 text-white fw-semibold">Courses</h1>
+      <button type="button" class="btn btn-secondary text-white" (click)="(refreshCourses)">
+        Refresh
+      </button>
     </div>
     @for (course of courses; track $index) {
       <div class="col col-4 gap-3">
@@ -18,13 +20,11 @@
             </span>
           </div>
           <p class="mx-2">{{ course.description }}</p>
-          <span class="mx-2 timestamp">
-            Last Updated At: {{ course.updatedAt | date: 'medium' }}</span
-          >
+          <span class="mx-2 timestamp"> Updated {{ formatTimeAgo(course.updatedAt) }}</span>
         </div>
       </div>
     } @empty {
-      <div>No courses found!</div>
+      <div class="text-white fs-6">No courses found!</div>
     }
   </div>
   <!-- End Courses List -->

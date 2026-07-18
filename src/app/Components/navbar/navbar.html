@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg">
   <div class="container-fluid mx-5">
-    <a class="navbar-brand" routerLink="/">Learner <span>🧑‍💻</span></a>
+    <a class="navbar-brand text-white fw-bold fs-4" routerLink="/">Learner <span>🧑‍💻</span></a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,12 +15,12 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" routerLink="/">Courses</a>
+          <a class="nav-link text-white fw-semibold" aria-current="page" routerLink="/">Courses</a>
         </li>
 
         @if (isAuthenticated) {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/admin">Admin</a>
+            <a class="nav-link text-white fw-semibold" routerLink="/admin">Admin</a>
           </li>
         }
       </ul>

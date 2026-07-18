@@ -60,29 +60,6 @@
             <div class="text-danger">Language is required</div>
           }
         </div>
-
-        <div class="mb-3">
-          <label for="thumbnail" class="form-label">Thumbnail</label>
-          <input
-            class="form-control"
-            type="text"
-            id="thumbnail"
-            name="thumbnail"
-            #thumbnail="ngModel"
-            [(ngModel)]="courseModel.thumbnail"
-            required
-            disabled
-          />
-          <div class="w-100 mt-3" align="center">
-            <img
-              [src]="courseModel.thumbnail"
-              [alt]="courseModel.title"
-              width="300"
-              height="200"
-              class="object-fit-cover rounded-2"
-            />
-          </div>
-        </div>
       </div>
 
       <div class="card-footer text-center">
@@ -100,7 +77,7 @@
 
   <!-- Courses List Section -->
   <div class="row my-3">
-    <h2 class="mb-3">Courses</h2>
+    <h1 class="mb-3 fw-semibold">Courses</h1>
     @for (course of courses; track $index) {
       <div class="col col-4 gap-3">
         <div class="course-card mb-3">
@@ -114,13 +91,11 @@
             </span>
           </div>
           <p class="mx-2">{{ course.description }}</p>
-          <span class="mx-2 timestamp">
-            Last Updated At: {{ course.updatedAt | date: 'medium' }}</span
-          >
+          <span class="mx-2 timestamp"> Updated {{ formatTimeAgo(course.updatedAt) }}</span>
         </div>
       </div>
     } @empty {
-      <div>No courses found!</div>
+      <div class="text-white">No courses found!</div>
     }
   </div>
   <!-- End Courses List -->

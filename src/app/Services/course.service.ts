@@ -22,8 +22,18 @@ export class CourseService {
       const parsed = JSON.parse(raw) as Course[];
       return Array.isArray(parsed) ? parsed : [];
     } catch (err) {
-      console.log(`Error loading courses. Error: ${err}`);
+      console.error(`Error loading courses. Error: ${err}`);
       return [];
+    }
+  }
+
+  private async generateRandomThumbnail(): Promise<string> {
+    try {
+      const response = await fetch('https://picsum.photos/300/200');
+      return response.url;
+    } catch (err) {
+      console.error(err);
+      return '';
     }
   }
 
@@ -31,12 +41,13 @@ export class CourseService {
     return this.courses;
   }
 
-  addCourse(course: Course): void {
+  async addCourse(course: Course) {
     if (!course) {
       return;
     }
 
     course.id = crypto.randomUUID();
+    course.thumbnail = await this.generateRandomThumbnail();
     course.updatedAt = new Date().toUTCString();
 
     this.courses.push(course);

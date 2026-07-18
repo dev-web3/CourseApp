@@ -1,12 +1,15 @@
 .container {
   .card {
+    background-color: gainsboro;
     width: 70vw;
     margin: auto;
   }
 
   .card-header {
+    background-color: slateblue;
     font-size: 1.8rem;
     font-weight: 500;
+    color: white;
   }
 
   .card-body {
@@ -42,8 +45,8 @@
     }
 
     .timestamp {
-      font-size: 0.75rem;
-      color: rgb(198, 201, 209);
+      font-size: 0.8rem;
+      color: rgb(56, 56, 56);
       font-weight: 400;
     }
   }
