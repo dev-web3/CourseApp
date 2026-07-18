@@ -52,6 +52,9 @@
 
     .btn-icon {
       padding: 0.25rem;
+      position: absolute;
+      margin-left: -1.8rem;
+      z-index: 100;
     }
   }
 }
