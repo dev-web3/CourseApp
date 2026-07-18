@@ -5,6 +5,10 @@
     border: 1px solid cadetblue;
     border-radius: 1rem;
     padding: 0.5rem;
+    transition:
+      transform 0.25s ease,
+      box-shadow 0.25s ease,
+      filter 0.25s ease;
 
     img {
       width: 95%;
@@ -23,5 +27,14 @@
       color: rgb(56, 56, 56);
       font-weight: 400;
     }
+  }
+
+  .course-card:hover {
+    transform: scale(1.05);
+    box-shadow:
+      0 0 15px rgba(102, 51, 153, 0.6),
+      0 0 30px rgba(102, 51, 153, 0.4),
+      0 0 45px rgba(102, 51, 153, 0.25);
+    filter: brightness(1.08);
   }
 }
