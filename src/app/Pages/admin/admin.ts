@@ -5,10 +5,11 @@ import { CourseService } from '../../Services/course.service';
 import { formatTimeAgo } from '../../Utils/dateTimeUtil';
 import { faTrash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
 import { FaIconComponent } from '@fortawesome/angular-fontawesome';
+import { Loader } from '../../Components/loader/loader';
 
 @Component({
   selector: 'app-admin',
-  imports: [FormsModule, FaIconComponent],
+  imports: [FormsModule, FaIconComponent, Loader],
   templateUrl: './admin.html',
   styleUrl: './admin.scss',
 })
@@ -57,12 +58,15 @@ export class Admin {
   }
 
   deleteCourse() {
+    this.isLoading = true;
     if (!this.selectedCourse) {
+      this.isLoading = false;
       return;
     }
 
     this.courseService.deleteCourse(this.selectedCourse.id);
     this.selectedCourse = null;
     this.courses = this.courseService.getCourses();
+    this.isLoading = false;
   }
 }
