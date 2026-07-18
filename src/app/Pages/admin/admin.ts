@@ -3,20 +3,25 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { Course } from '../../Models/course';
 import { CourseService } from '../../Services/course.service';
 import { formatTimeAgo } from '../../Utils/dateTimeUtil';
+import { faTrash, faTriangleExclamation } from '@fortawesome/free-solid-svg-icons';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-admin',
-  imports: [FormsModule],
+  imports: [FormsModule, FaIconComponent],
   templateUrl: './admin.html',
   styleUrl: './admin.scss',
 })
 export class Admin {
   private courseService = inject(CourseService);
   formatTimeAgo = formatTimeAgo;
+  faTrash = faTrash;
+  faTriangleExclamation = faTriangleExclamation;
 
   courses: Course[] = [];
   supportedLanguages: string[] = ['English', 'Bengali', 'Hindi', 'Japanese', 'Spanish', 'Thai'];
   isLoading: boolean = false;
+  selectedCourse: Course | null = null;
 
   courseModel = {
     title: '',
@@ -45,5 +50,19 @@ export class Admin {
     } finally {
       this.isLoading = false;
     }
+  }
+
+  onDeleteClick(course: Course) {
+    this.selectedCourse = course;
+  }
+
+  deleteCourse() {
+    if (!this.selectedCourse) {
+      return;
+    }
+
+    this.courseService.deleteCourse(this.selectedCourse.id);
+    this.selectedCourse = null;
+    this.courses = this.courseService.getCourses();
   }
 }

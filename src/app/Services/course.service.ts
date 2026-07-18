@@ -53,4 +53,9 @@ export class CourseService {
     this.courses.push(course);
     localStorage.setItem(this.COURSE_KEY, JSON.stringify(this.courses));
   }
+
+  deleteCourse(courseId: string) {
+    this.courses = this.courses.filter((c) => c.id !== courseId);
+    localStorage.setItem(this.COURSE_KEY, JSON.stringify(this.courses));
+  }
 }
